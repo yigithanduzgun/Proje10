@@ -1,20 +1,8 @@
-Feature: Register Functionality
+Feature: Register
 
-  Scenario:Register with valid username and password
-    Given Navigate to website
-    When Register customer
-    Then User should register successfully
+  Scenario: Register New User
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    Given User clicks Register
+    When User fills registration form
+    And User clicks Register button
+    Then Account should be create
