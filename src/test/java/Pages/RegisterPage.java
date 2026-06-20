@@ -53,4 +53,8 @@ public class RegisterPage {
 
     @FindBy(xpath="//input[@value='Register']")
     public WebElement registerButton;
-}
+
+    @FindBy (css = "[id=rightPanel]>p")
+    public  WebElement registerAssert;
+    }
+
