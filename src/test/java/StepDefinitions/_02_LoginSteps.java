@@ -1,33 +1,42 @@
 package StepDefinitions;
 
+import Pages.DialogPage;
+import Pages.ParentPage;
+import Pages.RegisterPage;
+import Utilities.GWD;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.testng.Assert;
 
 public class _02_LoginSteps {
-    @Given("User enters {string}")
-    public void userEnters(String arg0) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    DialogPage dp = new DialogPage();
+    RegisterPage rp = new RegisterPage();
+    ParentPage pp = new ParentPage();
+
+
+    @When("User enters {string}")
+    public void userEnters(String userName) {
+        pp.mySendKeys(dp.userName, userName);
     }
 
     @And("User enters password {string}")
-    public void userEntersPassword(String arg0) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void userEntersPassword(String passWord) {
+        pp.mySendKeys(dp.passWord, passWord);
+
     }
 
     @When("User clicks Login")
     public void userClicksLogin() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        pp.myClick(dp.loginButton);
+
     }
 
     @Then("User should see {string}")
-    public void userShouldSee(String arg0) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void userShouldSee(String message) {
+        Assert.assertEquals(rp.registerAssert.getText(),message);
+
     }
 }
