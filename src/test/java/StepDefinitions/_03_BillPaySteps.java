@@ -22,7 +22,7 @@ public class _03_BillPaySteps {
     public void theUserPaysTheBillWithDetails(String payeeName, String address, String city, String state,
                                               String zipCode, String phone, String account, String amount) {
 
-        // Ekranda gördüğümüz tüm form elementlerini parametrelerden gelen tamamen FARKLI verilerle dolduruyoruz
+        // Senaryo outline paramatreleri
         dp.mySendKeys(dp.payeeName, payeeName);
         dp.mySendKeys(dp.payeeAddress, address);
         dp.mySendKeys(dp.payeeCity, city);
@@ -38,7 +38,6 @@ public class _03_BillPaySteps {
 
     @Then("the system should verify that the bill has been paid successfully with message {string}")
     public void theSystemShouldVerifyThatTheBillHasBeenPaidSuccessfullyWithMessage(String expectedMessage) {
-        // 1. Elementin sayfada görünür olmasını bekleyin
         dp.wait.until(ExpectedConditions.visibilityOf(dp.billPayCompleteTitle));
         String completeMessage = dp.billPayCompleteTitle.getText();
         Assert.assertEquals(completeMessage, expectedMessage, "Bill Payment Uncompleted!");

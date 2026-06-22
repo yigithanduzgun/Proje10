@@ -8,7 +8,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 public class DialogPage extends ParentPage{
-// kullanıcı ile ilgili olan locatorlar buraya konulacak
 
     @FindBy(id = "customer.firstName")
     public WebElement firstname;
@@ -46,6 +45,9 @@ public class DialogPage extends ParentPage{
     @FindBy(xpath="//input[@type='submit' and @value='Register']")
     public WebElement btnRegister;
 
+    @FindBy (css = "[id=rightPanel]>p")
+    public  WebElement registerAssert;
+
 //    @FindBy(xpath="//input[@type='text' and @name='username']")
 //    public WebElement loginUsername;
 //
@@ -55,14 +57,17 @@ public class DialogPage extends ParentPage{
 //    @FindBy(xpath="//input[@type='submit' and @value='Log In']")
 //    public WebElement btnLogin;
 
-    @FindBy (css = "[id=rightPanel]>p")
-    public  WebElement registerAssert;
+//    @FindBy(xpath = "//p[@class='error']")
+//    public WebElement errorMessage;
+
+    @FindBy (id = "customer.username.errors")
+    public  WebElement usernamRequired;
+
+    @FindBy(id="customer.password.errors")
+    public WebElement passwordRequired;
 
     @FindBy(css="a[href='logout.htm']")
     public WebElement logout;
-
-    @FindBy(xpath = "//p[@class='error']")
-    public WebElement errorMessage;
 
     @FindBy(name = "payee.name")
     public WebElement payeeName;
