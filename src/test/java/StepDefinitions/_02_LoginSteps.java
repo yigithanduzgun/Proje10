@@ -1,42 +1,52 @@
 package StepDefinitions;
 
 import Pages.DialogPage;
-import Pages.ParentPage;
-import Pages.RegisterPage;
-import Utilities.GWD;
+import Pages.NavigatePage;
+import com.github.javafaker.Faker;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 
 public class _02_LoginSteps {
     DialogPage dp = new DialogPage();
-    RegisterPage rp = new RegisterPage();
-    ParentPage pp = new ParentPage();
-
-
-    @When("User enters {string}")
-    public void userEnters(String userName) {
-        pp.mySendKeys(dp.userName, userName);
+    @Then("User should see logout.")
+    public void userShouldSeeLogout() {
+        String logoutAssert = dp.logout.getText();
+        Assert.assertEquals(logoutAssert, "Log Out", "Başarısız login!");
     }
 
-    @And("User enters password {string}")
-    public void userEntersPassword(String passWord) {
-        pp.mySendKeys(dp.passWord, passWord);
+    @When("User clicks Logout")
+    public void userClicksLogout() {
+        dp.myClick(dp.logout);
 
     }
 
-    @When("User clicks Login")
-    public void userClicksLogin() {
-        pp.myClick(dp.loginButton);
+    public String userName;
+    @When("The user fills out the registration form with username {string} and password {string}")
+    public void theUserFillsOutTheRegistrationFormWithUsernameAndPassword(String username, String password) {
+        Faker randomUreteci = new Faker();
+        userName = randomUreteci.name().firstName();
 
+        dp.mySendKeys(dp.firstname, "Test");
+        dp.mySendKeys(dp.lastname, "Tester");
+        dp.mySendKeys(dp.address, "test sokak");
+        dp.mySendKeys(dp.city, "Istanbul");
+        dp.mySendKeys(dp.state, "Turkey");
+        dp.mySendKeys(dp.zipcode, "10111");
+        dp.mySendKeys(dp.phone, "555555555");
+        dp.mySendKeys(dp.ssn, "555");
+
+        // senario outline tablosundan gelen parametreler kullanıldı
+        dp.mySendKeys(dp.registerUsername, username);
+        dp.mySendKeys(dp.registerPassword, password);
+        dp.mySendKeys(dp.confirmPassword, password);
     }
 
     @Then("User should see {string}")
-    public void userShouldSee(String message) {
-        Assert.assertEquals(rp.registerAssert.getText(),message);
-
+        public void userShouldSee(String expectedMessage) {
+            String actualMessage = dp.errorMessage.getText();
+            Assert.assertEquals(actualMessage, expectedMessage, "Hata mesajı uyuşmuyor!");
     }
 }
