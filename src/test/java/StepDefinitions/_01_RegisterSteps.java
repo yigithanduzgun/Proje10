@@ -1,8 +1,7 @@
 package StepDefinitions;
 
 import Pages.DialogPage;
-import Pages.ParentPage;
-import Pages.RegisterPage;
+import Pages.NavigatePage;
 import Utilities.GWD;
 import com.github.javafaker.Faker;
 import io.cucumber.java.PendingException;
@@ -14,61 +13,42 @@ import org.testng.Assert;
 
 public class _01_RegisterSteps {
     DialogPage dp = new DialogPage();
-    RegisterPage rp = new RegisterPage();
-    ParentPage pp = new ParentPage();
-
-
-    @Given("Navigate To Website")
-    public void navigateToWebsite() {
-        // Write code here that turns the phrase above into concrete actions
+    NavigatePage np = new NavigatePage();
+    @Given("The user navigates to the Para Bank home page")
+    public void theUserNavigatesToTheParaBankHomePage() {
+        // sitenin açılacağı yer
         GWD.getDriver().get("https://parabank.parasoft.com/parabank/index.htm");
-
+        np.myClick(np.registerPage); // register sayfasına gider
     }
-
-    @When("User clicks Register")
-    public void userClicksRegister() {
-
-        // navigate to website nerede yapıyoruz ?
-        pp.myClick(rp.registerLink);
-
-    }
-
-    public String firstName;
-    public String lastName;
-    public String password;
     public String userName;
-
-    @When("User fills registration form")
-    public void userFillsRegistrationForm() {
-        Faker faker = new Faker();
-        firstName = faker.name().firstName();
-        lastName = faker.name().lastName();
-        password = faker.internet().password();
-        userName = faker.name().username();
-
-        pp.mySendKeys(rp.firstName, firstName);
-        pp.mySendKeys(rp.lastName, lastName);
-        pp.mySendKeys(rp.address, "turkiye");
-        pp.mySendKeys(rp.city, "ist");
-        pp.mySendKeys(rp.state, "beylik");
-        pp.mySendKeys(rp.zip, "111");
-        pp.mySendKeys(rp.phone, "123456789");
-        pp.mySendKeys(rp.ssn, "555");
-        pp.mySendKeys(rp.username, userName);
-        pp.mySendKeys(rp.password, password);
-        pp.mySendKeys(rp.confirmPassword, password);
+    @When("The user fills out the registration form with valid details")
+    public void theUserFillsOutTheRegistrationFormWithValidDetails() {
+        Faker randomUreteci = new Faker();
+        userName = randomUreteci.name().firstName();
+        dp.mySendKeys(dp.firstname, "Test");
+        dp.mySendKeys(dp.lastname, "Tester");
+        dp.mySendKeys(dp.address, "test sokak");
+        dp.mySendKeys(dp.city, "istanbul");
+        dp.mySendKeys(dp.state, "turkiye");
+        dp.mySendKeys(dp.zipcode, "10011");
+        dp.mySendKeys(dp.phone, "55555555");
+        dp.mySendKeys(dp.ssn, "555");
+        dp.mySendKeys(dp.registerUsername, userName);
+        dp.mySendKeys(dp.registerPassword, "123456test");
+        dp.mySendKeys(dp.confirmPassword, "123456test");
     }
 
-    @And("User clicks Register button")
-    public void userClicksRegisterButton() {
-        pp.myClick(rp.registerButton);
+    @And("The user clicks on the REGISTER button")
+    public void theUserClicksOnTheREGISTERButton() {
+        {
+            dp.myClick(dp.btnRegister);
+        }
     }
 
-    @Then("Account should be create")
-    public void accountShouldBeCreate() {
-       String regisAssert=rp.registerAssert.getText();
+    @Then("The user should see the success message {string}")
+    public void theUserShouldSeeTheSuccessMessage(String arg0) {
+        // doğrulama mesajının görüleceği yer
+        String regisAssert=dp.registerAssert.getText();
         Assert.assertEquals(regisAssert, "Your account was created successfully. You are now logged in.", "Hatalı register girişimi.");
     }
-
-
 }

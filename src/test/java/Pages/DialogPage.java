@@ -4,45 +4,98 @@ import Utilities.GWD;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 
-public class DialogPage {
-    public DialogPage(){
+public class DialogPage extends ParentPage{
+// kullanıcı ile ilgili olan locatorlar buraya konulacak
 
-        PageFactory.initElements(
-                GWD.getDriver(),
-                this
-        );
-    }
+    @FindBy(id = "customer.firstName")
+    public WebElement firstname;
 
-    @FindBy(xpath = "//*[@id='leftPanel']/ul/li[4]/a")
-    public WebElement billPay;
+    @FindBy(id = "customer.lastName")
+    public WebElement lastname;
 
-    @FindBy (xpath = "//*[@id='billpayForm']/form/table/tbody/tr[14]/td[2]/input")
-    public  WebElement sendPayment;
+    @FindBy(id = "customer.address.street")
+    public WebElement address;
 
-    @FindBy (xpath = "//*[@id='billpayForm6']/form/table/tbody/tr[11]/td[2]/input")
-    public WebElement amount;
+    @FindBy(id="customer.address.city")
+    public WebElement city;
 
-    @FindBy (xpath = "//*[@id='billpayForm']/form/table/tbody/tr[8]/td[2]/input")
-    public WebElement account ;
+    @FindBy(id="customer.address.state")
+    public WebElement state;
 
-    @FindBy (xpath = "//*[@id='billpayForm']/form/table/tbody/tr[9]/td[2]/input")
-    public WebElement verifyAccount;
+    @FindBy(id="customer.address.zipCode")
+    public WebElement zipcode;
 
-    @FindBy (xpath = "//*[@id='billpayForm']/form/table/tbody/tr[1]/td[2]/input")
+    @FindBy(id="customer.phoneNumber")
+    public WebElement phone;
+
+    @FindBy(id="customer.ssn")
+    public WebElement ssn;
+
+    @FindBy(id="customer.username")
+    public WebElement registerUsername;
+
+    @FindBy(id="customer.password")
+    public WebElement registerPassword;
+
+    @FindBy(id="repeatedPassword")
+    public WebElement confirmPassword;
+
+    @FindBy(xpath="//input[@type='submit' and @value='Register']")
+    public WebElement btnRegister;
+
+//    @FindBy(xpath="//input[@type='text' and @name='username']")
+//    public WebElement loginUsername;
+//
+//    @FindBy(xpath="//input[@type='password' and @name='password']")
+//    public WebElement loginPassword;
+//
+//    @FindBy(xpath="//input[@type='submit' and @value='Log In']")
+//    public WebElement btnLogin;
+
+    @FindBy (css = "[id=rightPanel]>p")
+    public  WebElement registerAssert;
+
+    @FindBy(css="a[href='logout.htm']")
+    public WebElement logout;
+
+    @FindBy(xpath = "//p[@class='error']")
+    public WebElement errorMessage;
+
+    @FindBy(name = "payee.name")
     public WebElement payeeName;
 
-    @FindBy (xpath = "//*[@id='leftPanel']/ul/li[8]/a")
-    public WebElement logOut;
+    @FindBy(name = "payee.address.street")
+    public WebElement payeeAddress;
 
-    @FindBy (css = "[class='login']>input")
-    public  WebElement userName;
+    @FindBy(name = "payee.address.city")
+    public WebElement payeeCity;
 
-    @FindBy (xpath =" //*[@id='loginPanel']/form/div[2]/input" )
-    public WebElement passWord;
+    @FindBy(name = "payee.address.state")
+    public WebElement payeeState;
 
-    @FindBy (xpath = "//*[@id='loginPanel']/form/div[3]/input")
-    public WebElement loginButton;
+    @FindBy(name = "payee.address.zipCode")
+    public WebElement payeeZip;
+
+    @FindBy(name = "payee.phoneNumber")
+    public WebElement payeePhone;
+
+    @FindBy(name = "payee.accountNumber")
+    public WebElement accountNumber;
+
+    @FindBy(name = "verifyAccount")
+    public WebElement verifyAccountNumber;
+
+    @FindBy(name = "amount")
+    public WebElement amountInput;
+
+    @FindBy(xpath = "//input[@value='Send Payment']")
+    public WebElement sendPaymentButton;
+
+    @FindBy(xpath = "//div[@id='billpayResult']/h1[@class='title']")
+    public WebElement billPayCompleteTitle;
 
 
 }

@@ -1,6 +1,17 @@
 package Pages;
 
-public class NavigatePage
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class NavigatePage extends ParentPage
 {
+// Sayfanın locatorları buraya konulacak
+
+    @FindBy(xpath = "//a[text()='Register']")
+    public WebElement registerPage;
+
+    @FindBy(css="a[href='billpay.htm']")
+    public WebElement billPayPage;
 
 }
+
