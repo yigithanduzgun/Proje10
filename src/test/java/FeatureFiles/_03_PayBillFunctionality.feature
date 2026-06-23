@@ -11,7 +11,7 @@ Feature: Bill Pay Functionality
     Then the system should verify that the bill has been paid successfully with message "Bill Payment Complete"
 
     Examples:
-      | PayeeName           | Address         | City     | State   | ZipCode | Phone      | Account | Amount |
-      | Electricity Company | 101 Electricity | Istanbul | Turkiye | 10001   | 5551112233 | 998877  | 85     |
-      | Water Company       | 202 Water       | Mersin   | Turkiye | 20002   | 5554445566 | 445566  | 45     |
-      | Gas Company         | 303 Gas         | Ankara   | Turkiye | 30003   | 5557778899 | 112233  | 120    |
+      | PayeeName           | Address         | City      | State       | ZipCode | Phone      | Account | Amount |
+      | Electricity Company | 101 Electricity | Istanbul  | Turkiye     | 10001   | 5551112233 | 998877  | 85     |
+      | Water Company       | 202 Water       | Rotterdam | Netherlands | 20002   | 5554445566 | 445566  | 45     |
+      | Gas Company         | 303 Gas         | Bangkok   | Tayland     | 30003   | 5557778899 | 112233  | 120    |

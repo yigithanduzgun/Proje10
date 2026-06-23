@@ -16,9 +16,8 @@ public class _01_RegisterSteps {
     NavigatePage np = new NavigatePage();
     @Given("The user navigates to the Para Bank home page")
     public void theUserNavigatesToTheParaBankHomePage() {
-        // sitenin açılacağı yer
         GWD.getDriver().get("https://parabank.parasoft.com/parabank/index.htm");
-        np.myClick(np.registerPage); // register sayfasına gider
+        np.myClick(np.registerPage);
     }
     public String userName;
     @When("The user fills out the registration form with valid details")
@@ -47,7 +46,6 @@ public class _01_RegisterSteps {
 
     @Then("The user should see the success message {string}")
     public void theUserShouldSeeTheSuccessMessage(String arg0) {
-        // doğrulama mesajının görüleceği yer
         String regisAssert=dp.registerAssert.getText();
         Assert.assertEquals(regisAssert, "Your account was created successfully. You are now logged in.", "Hatalı register girişimi.");
     }
